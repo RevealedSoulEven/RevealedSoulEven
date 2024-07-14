@@ -1,8 +1,9 @@
-- 👋 Hi, I’m @RevealedSoulEven
+- 👋 Hi, I’m @RevealedSoulEven | 19M
 - 👀 I’m interested in Game Hack Dev
-- 🌱 I’m currently working as a YouTuber
-- 💞️ I’m looking to collaborate on Free Fire Hacks
-- 📫 Telegram : @SoulEvenOfficial
+- 🌱 ~I’m currently~ I was working as a YouTuber
+- 🔥 Used to make Free Fire hacks and had the most subbed YouTube channel of Free Fire Hacking (suspended in 2021 with 65k Subs)
+- 🤐 Android Reverse Engineering is my passion
+- 📫 Telegram : @SoulEvenOfficial @JustSimpleAyush
 
 <!---
 RevealedSoulEven/RevealedSoulEven is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
