@@ -5,7 +5,7 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subbed YouTube channel of Free Fire Hacking<br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(suspended in 2021 with 65k Subs)
 - 🤐 Android Reverse Engineering is my passion
-- 📫 Telegram : @SoulEvenOfficial (insctive) @JustSimpleAyush (active)
+- 📫 Telegram : @SoulEvenOfficial 
 
 <!---
 RevealedSoulEven/RevealedSoulEven is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
