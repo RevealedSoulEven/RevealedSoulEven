@@ -1,0 +1,1027 @@
+<svg viewBox="0 0 900 340" width="900" height="340"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img"
+     aria-label="SoulEven — Android Reverse Engineer, Malware Analyst, Bug Hunter">
+
+  <defs>
+
+    <!-- =========================================================
+         BACKGROUND
+    ========================================================== -->
+
+    <linearGradient id="bg" x1="0" y1="0" x2="900" y2="340"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="48%" stop-color="#FCFAFF"/>
+      <stop offset="100%" stop-color="#FFFFFF"/>
+    </linearGradient>
+
+    <!-- Large blue atmospheric bloom -->
+    <radialGradient id="blueBloom">
+      <stop offset="0%"
+            stop-color="#7C3AED"
+            stop-opacity="0.78"/>
+      <stop offset="18%"
+            stop-color="#8B5CF6"
+            stop-opacity="0.58"/>
+      <stop offset="42%"
+            stop-color="#A855F7"
+            stop-opacity="0.34"/>
+      <stop offset="72%"
+            stop-color="#C084FC"
+            stop-opacity="0.15"/>
+      <stop offset="100%"
+            stop-color="#C084FC"
+            stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Cyan bloom -->
+    <radialGradient id="cyanBloom">
+      <stop offset="0%"
+            stop-color="#D946EF"
+            stop-opacity="0.44"/>
+      <stop offset="25%"
+            stop-color="#7C3AED"
+            stop-opacity="0.18"/>
+      <stop offset="60%"
+            stop-color="#7C3AED"
+            stop-opacity="0.05"/>
+      <stop offset="100%"
+            stop-color="#7C3AED"
+            stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Additional colour blooms -->
+    <radialGradient id="pinkBloom">
+      <stop offset="0%" stop-color="#EC4899" stop-opacity="0.34"/>
+      <stop offset="28%" stop-color="#D946EF" stop-opacity="0.17"/>
+      <stop offset="65%" stop-color="#cc89d8" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#e486f5" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="lavenderBloom">
+      <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.30"/>
+      <stop offset="35%" stop-color="#7b6cb9" stop-opacity="0.14"/>
+      <stop offset="70%" stop-color="#9287c0" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#b8aaf8" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Tiny particle glow -->
+    <radialGradient id="particleGlow">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+      <stop offset="25%" stop-color="#A855F7" stop-opacity=".9"/>
+      <stop offset="60%" stop-color="#D946EF" stop-opacity=".3"/>
+      <stop offset="100%" stop-color="#de77ee" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Grid dots -->
+    <pattern id="dots"
+             width="24"
+             height="24"
+             patternUnits="userSpaceOnUse">
+      <circle cx="1.2" cy="1.2"
+              r="1"
+              fill="#B8A7C9"
+              opacity=".20"/>
+    </pattern>
+
+    <!-- Glow filters -->
+    <filter id="blurHuge"
+            x="-100%"
+            y="-100%"
+            width="300%"
+            height="300%">
+      <feGaussianBlur stdDeviation="52"/>
+    </filter>
+
+    <filter id="blurMedium"
+            x="-100%"
+            y="-100%"
+            width="300%"
+            height="300%">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+
+    <filter id="particleBlur"
+            x="-300%"
+            y="-300%"
+            width="600%"
+            height="600%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+
+    <filter id="particleGlowFilter"
+            x="-500%"
+            y="-500%"
+            width="1000%"
+            height="1000%">
+      <feGaussianBlur stdDeviation="2.2"
+                       result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- =========================================================
+         DIVIDER
+    ========================================================== -->
+
+    <linearGradient id="divider"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="0">
+
+      <stop offset="0%"
+            stop-color="#7C3AED"/>
+
+      <stop offset="45%"
+            stop-color="#D946EF"/>
+
+      <stop offset="100%"
+            stop-color="#A855F7"/>
+
+    </linearGradient>
+
+
+    <!-- =========================================================
+         ANIMATION STYLES
+    ========================================================== -->
+
+    <style>
+
+      /*
+       * Large bloom #1
+       * Slow breathing + horizontal movement
+       */
+
+      .bloom1 {
+        animation:
+          bloomMove1 13s ease-in-out infinite alternate,
+          bloomPulse1 6s ease-in-out infinite;
+        transform-origin: center;
+      }
+
+      /*
+       * Large bloom #2
+       */
+
+      .bloom2 {
+        animation:
+          bloomMove2 17s ease-in-out infinite alternate,
+          bloomPulse2 8s ease-in-out infinite;
+        transform-origin: center;
+      }
+
+      /*
+       * Cyan bloom
+       */
+
+      .bloom3 {
+        animation:
+          bloomMove3 11s ease-in-out infinite alternate,
+          bloomPulse3 5s ease-in-out infinite;
+        transform-origin: center;
+      }
+
+
+      /* =======================================================
+         BLOOM MOTION
+      ======================================================== */
+
+      @keyframes bloomMove1 {
+
+        0% {
+          transform:
+            translate(-20px, -8px)
+            scale(0.92);
+        }
+
+        50% {
+          transform:
+            translate(35px, 18px)
+            scale(1.08);
+        }
+
+        100% {
+          transform:
+            translate(85px, -12px)
+            scale(1.18);
+        }
+
+      }
+
+      @keyframes bloomMove2 {
+
+        0% {
+          transform:
+            translate(20px, 20px)
+            scale(1);
+        }
+
+        50% {
+          transform:
+            translate(-25px, -5px)
+            scale(1.12);
+        }
+
+        100% {
+          transform:
+            translate(-80px, 25px)
+            scale(1.2);
+        }
+
+      }
+
+      @keyframes bloomMove3 {
+
+        0% {
+          transform:
+            translate(0, 0)
+            scale(.8);
+        }
+
+        50% {
+          transform:
+            translate(-25px, 18px)
+            scale(1.15);
+        }
+
+        100% {
+          transform:
+            translate(35px, -18px)
+            scale(1.3);
+        }
+
+      }
+
+
+      /* =======================================================
+         BLOOM BREATHING
+      ======================================================== */
+
+      @keyframes bloomPulse1 {
+
+        0%, 100% {
+          opacity: .45;
+        }
+
+        50% {
+          opacity: .95;
+        }
+
+      }
+
+      @keyframes bloomPulse2 {
+
+        0%, 100% {
+          opacity: .35;
+        }
+
+        50% {
+          opacity: .85;
+        }
+
+      }
+
+      @keyframes bloomPulse3 {
+
+        0%, 100% {
+          opacity: .25;
+        }
+
+        50% {
+          opacity: .8;
+        }
+
+      }
+
+
+      /* =======================================================
+         PARTICLES
+      ======================================================== */
+
+      .particle {
+        fill: #A855F7;
+        filter: url(#particleGlowFilter);
+      }
+
+      .particleSoft {
+        fill: #D946EF;
+        filter: url(#particleBlur);
+      }
+
+
+      /*
+       * Each particle has its own timing.
+       * The different durations prevent synchronization.
+       */
+
+      .p1 {
+        animation: fly1 8s linear infinite;
+      }
+
+      .p2 {
+        animation: fly2 11s linear infinite;
+      }
+
+      .p3 {
+        animation: fly3 14s linear infinite;
+      }
+
+      .p4 {
+        animation: fly4 9s linear infinite;
+      }
+
+      .p5 {
+        animation: fly5 12s linear infinite;
+      }
+
+      .p6 {
+        animation: fly6 16s linear infinite;
+      }
+
+      .p7 {
+        animation: fly7 10s linear infinite;
+      }
+
+      .p8 {
+        animation: fly8 13s linear infinite;
+      }
+
+      .p9 {
+        animation: fly9 18s linear infinite;
+      }
+
+      .p10 {
+        animation: fly10 7s linear infinite;
+      }
+
+
+      /* =======================================================
+         PARTICLE PATHS
+      ======================================================== */
+
+      @keyframes fly1 {
+
+        0% {
+          transform: translate(20px, 310px);
+          opacity: 0;
+        }
+
+        10% { opacity: .7; }
+
+        50% {
+          transform: translate(310px, 170px);
+          opacity: 1;
+        }
+
+        90% { opacity: .5; }
+
+        100% {
+          transform: translate(610px, 40px);
+          opacity: 0;
+        }
+
+      }
+
+
+      @keyframes fly2 {
+
+        0% {
+          transform: translate(880px, 300px);
+          opacity: 0;
+        }
+
+        15% { opacity: .8; }
+
+        50% {
+          transform: translate(650px, 170px);
+        }
+
+        100% {
+          transform: translate(360px, 20px);
+          opacity: 0;
+        }
+
+      }
+
+
+      @keyframes fly3 {
+
+        0% {
+          transform: translate(100px, 340px);
+          opacity: 0;
+        }
+
+        20% { opacity: .8; }
+
+        60% {
+          transform: translate(450px, 220px);
+        }
+
+        100% {
+          transform: translate(820px, 100px);
+          opacity: 0;
+        }
+
+      }
+
+
+      @keyframes fly4 {
+
+        0% {
+          transform: translate(700px, 340px);
+          opacity: 0;
+        }
+
+        15% { opacity: .8; }
+
+        55% {
+          transform: translate(590px, 180px);
+        }
+
+        100% {
+          transform: translate(480px, 0);
+          opacity: 0;
+        }
+
+      }
+
+
+      @keyframes fly5 {
+
+        0% {
+          transform: translate(0, 120px);
+          opacity: 0;
+        }
+
+        20% { opacity: .7; }
+
+        50% {
+          transform: translate(350px, 90px);
+        }
+
+        100% {
+          transform: translate(900px, 30px);
+          opacity: 0;
+        }
+
+      }
+
+
+      @keyframes fly6 {
+
+        0% {
+          transform: translate(900px, 50px);
+          opacity: 0;
+        }
+
+        20% { opacity: .65; }
+
+        55% {
+          transform: translate(560px, 140px);
+        }
+
+        100% {
+          transform: translate(50px, 260px);
+          opacity: 0;
+        }
+
+      }
+
+
+      @keyframes fly7 {
+
+        0% {
+          transform: translate(250px, 340px);
+          opacity: 0;
+        }
+
+        20% { opacity: .75; }
+
+        60% {
+          transform: translate(330px, 180px);
+        }
+
+        100% {
+          transform: translate(420px, 0);
+          opacity: 0;
+        }
+
+      }
+
+
+      @keyframes fly8 {
+
+        0% {
+          transform: translate(500px, 340px);
+          opacity: 0;
+        }
+
+        15% { opacity: .75; }
+
+        50% {
+          transform: translate(620px, 200px);
+        }
+
+        100% {
+          transform: translate(750px, 20px);
+          opacity: 0;
+        }
+
+      }
+
+
+      @keyframes fly9 {
+
+        0% {
+          transform: translate(840px, 250px);
+          opacity: 0;
+        }
+
+        25% { opacity: .6; }
+
+        60% {
+          transform: translate(500px, 280px);
+        }
+
+        100% {
+          transform: translate(100px, 300px);
+          opacity: 0;
+        }
+
+      }
+
+
+      @keyframes fly10 {
+
+        0% {
+          transform: translate(50px, 40px);
+          opacity: 0;
+        }
+
+        15% { opacity: .9; }
+
+        55% {
+          transform: translate(300px, 110px);
+        }
+
+        100% {
+          transform: translate(700px, 180px);
+          opacity: 0;
+        }
+
+      }
+
+
+      /* =======================================================
+         TEXT
+      ======================================================== */
+
+      .mono {
+        font-family:
+          'JetBrains Mono',
+          'Fira Code',
+          ui-monospace,
+          'SFMono-Regular',
+          'Roboto Mono',
+          monospace;
+      }
+
+    </style>
+
+  </defs>
+
+
+  <!-- =========================================================
+       BACKGROUND
+  ========================================================== -->
+
+  <rect
+    width="900"
+    height="340"
+    rx="16"
+    fill="url(#bg)"
+  />
+
+  <!-- subtle dot field -->
+
+  <rect
+    width="900"
+    height="340"
+    rx="16"
+    fill="url(#dots)"
+  />
+
+
+  <!-- =========================================================
+       HUGE SOFT BLUE BLOOMS
+  ========================================================== -->
+
+  <g class="bloom1"
+     filter="url(#blurHuge)"
+     opacity=".75">
+
+    <circle
+      cx="150"
+      cy="80"
+      r="150"
+      fill="url(#blueBloom)"
+    />
+
+  </g>
+
+
+  <g class="bloom2"
+     filter="url(#blurHuge)"
+     opacity=".65">
+
+    <circle
+      cx="770"
+      cy="250"
+      r="170"
+      fill="url(#blueBloom)"
+    />
+
+  </g>
+
+
+  <g class="bloom3"
+     filter="url(#blurMedium)"
+     opacity=".65">
+
+    <circle
+      cx="600"
+      cy="70"
+      r="100"
+      fill="url(#cyanBloom)"
+    />
+
+  </g>
+
+  <!-- extra soft atmospheric bloom -->
+  <g class="bloom3"
+     filter="url(#blurHuge)"
+     opacity=".20">
+    <circle
+      cx="430"
+      cy="245"
+      r="115"
+      fill="url(#cyanBloom)"
+    />
+  </g>
+
+
+  <!-- Additional atmospheric blooms -->
+  <g filter="url(#blurHuge)" opacity="0.50">
+    <circle cx="300" cy="55" r="115" fill="url(#pinkBloom)"/>
+  </g>
+  <g filter="url(#blurHuge)" opacity="0.42">
+    <circle cx="690" cy="115" r="135" fill="url(#lavenderBloom)"/>
+  </g>
+  <g filter="url(#blurMedium)" opacity="0.38">
+    <circle cx="105" cy="275" r="90" fill="url(#pinkBloom)"/>
+  </g>
+
+  <!-- =========================================================
+       FINE FLOATING PARTICLES
+  ========================================================== -->
+
+  <g>
+
+    <circle class="particle p1" r="1.5"/>
+    <circle class="particleSoft p1" r="3"/>
+
+    <circle class="particle p2" r="1.2"/>
+    <circle class="particleSoft p2" r="2.8"/>
+
+    <circle class="particle p3" r="1.4"/>
+    <circle class="particleSoft p3" r="3"/>
+
+    <circle class="particle p4" r="1"/>
+    <circle class="particleSoft p4" r="2.5"/>
+
+    <circle class="particle p5" r="1.3"/>
+    <circle class="particleSoft p5" r="3"/>
+
+    <circle class="particle p6" r="1.1"/>
+    <circle class="particleSoft p6" r="2.5"/>
+
+    <circle class="particle p7" r="1.4"/>
+    <circle class="particleSoft p7" r="3"/>
+
+    <circle class="particle p8" r="1"/>
+    <circle class="particleSoft p8" r="2.5"/>
+
+    <circle class="particle p9" r="1.2"/>
+    <circle class="particleSoft p9" r="3"/>
+
+    <circle class="particle p10" r="1.5"/>
+    <circle class="particleSoft p10" r="3"/>
+
+  </g>
+
+
+  <!-- =========================================================
+       CONTENT
+  ========================================================== -->
+
+  <text
+    x="40"
+    y="46"
+    class="mono"
+    font-size="12"
+    letter-spacing="1">
+
+    <tspan fill="#4B5563">
+      0x0000
+    </tspan>
+
+    <tspan
+      fill="#766681"
+      dx="14">
+      72 6F 6F 74 40 61 6E 64 72 6F 69 64
+    </tspan>
+
+    <tspan
+      fill="#4B5563"
+      dx="14">
+      →
+    </tspan>
+
+    <tspan
+      fill="#7C3AED"
+      dx="14"
+      font-weight="600">
+      root@android
+    </tspan>
+
+  </text>
+
+
+  <text
+    x="38"
+    y="128"
+    class="mono"
+    font-size="58"
+    font-weight="800"
+    fill="#24113D"
+    letter-spacing="-1">
+    Revealed SoulEven
+  </text>
+
+
+  <text
+    x="40"
+    y="164"
+    class="mono"
+    font-size="18"
+    font-weight="600">
+
+    <tspan fill="#7C3AED">
+      Android Reverse Engineer
+    </tspan>
+
+    <tspan fill="#4B5563">
+      ·
+    </tspan>
+
+    <tspan fill="#7C3AED">
+      Malware Analyst
+    </tspan>
+
+    <tspan fill="#4B5563">
+      ·
+    </tspan>
+
+    <tspan fill="#7C3AED">
+      Bug Hunter
+    </tspan>
+
+  </text>
+
+
+  <text
+    x="40"
+    y="192"
+    class="mono"
+    font-size="13.5"
+    fill="#5B4B6B">
+
+    Breaking software apart since 2017 —
+    assembly, Android internals, and the bugs everyone else missed.
+
+  </text>
+
+
+  <text
+    x="40"
+    y="228"
+    class="mono"
+    font-size="13">
+
+    <tspan fill="#4B5563">
+      0x0F3A2C
+    </tspan>
+
+    <tspan
+      fill="#8B7A9B"
+      dx="12">
+      E3 A0 00 01
+    </tspan>
+
+    <tspan
+      fill="#4B5563"
+      dx="10">
+      →
+    </tspan>
+
+    <tspan
+      fill="#A855F7"
+      dx="10"
+      font-weight="700">
+      E3 A0 00 00
+    </tspan>
+
+    <tspan
+      fill="#8B7A9B"
+      dx="12"
+      font-style="italic">
+      ; patched — 65K subs, one shutdown, zero regrets
+    </tspan>
+
+  </text>
+
+
+  <!-- divider -->
+
+  <rect
+    x="40"
+    y="250"
+    width="806"
+    height="1.5"
+    fill="url(#divider)"
+    opacity=".65"
+  />
+
+
+  <!-- =========================================================
+       REGISTERS
+  ========================================================== -->
+
+  <g class="mono">
+
+    <g>
+      <rect
+        x="40"
+        y="272"
+        width="150"
+        height="52"
+        rx="8"
+        fill="#FFFFFF"
+        stroke="#a185c0"/>
+
+      <text
+        x="54"
+        y="290"
+        font-size="10"
+        letter-spacing="1.5"
+        fill="#8B7A9B">
+        R0 · SINCE
+      </text>
+
+      <text
+        x="54"
+        y="311"
+        font-size="16"
+        font-weight="700"
+        fill="#24113D">
+        2017
+      </text>
+    </g>
+
+
+    <g>
+      <rect
+        x="204"
+        y="272"
+        width="150"
+        height="52"
+        rx="8"
+        fill="#FFFFFF"
+        stroke="#a185c0"/>
+
+      <text
+        x="218"
+        y="290"
+        font-size="10"
+        letter-spacing="1.5"
+        fill="#8B7A9B">
+        R1 · PEAK
+      </text>
+
+      <text
+        x="218"
+        y="311"
+        font-size="16"
+        font-weight="700"
+        fill="#24113D">
+        65K SUBS
+      </text>
+    </g>
+
+
+    <g>
+      <rect
+        x="368"
+        y="272"
+        width="150"
+        height="52"
+        rx="8"
+        fill="#FFFFFF"
+        stroke="#a185c0"/>
+
+      <text
+        x="382"
+        y="290"
+        font-size="10"
+        letter-spacing="1.5"
+        fill="#8B7A9B">
+        R2 · ARCH
+      </text>
+
+      <text
+        x="382"
+        y="311"
+        font-size="16"
+        font-weight="700"
+        fill="#24113D">
+        ARM · x86
+      </text>
+    </g>
+
+
+    <g>
+      <rect
+        x="532"
+        y="272"
+        width="150"
+        height="52"
+        rx="8"
+        fill="#FFFFFF"
+        stroke="#a185c0"/>
+
+      <text
+        x="546"
+        y="290"
+        font-size="10"
+        letter-spacing="1.5"
+        fill="#8B7A9B">
+        R3 · FOCUS
+      </text>
+
+      <text
+        x="546"
+        y="311"
+        font-size="15"
+        font-weight="700"
+        fill="#24113D">
+        RE + MALWARE
+      </text>
+    </g>
+
+
+    <g>
+      <rect
+        x="696"
+        y="272"
+        width="150"
+        height="52"
+        rx="8"
+        fill="#FFFFFF"
+        stroke="#a185c0"/>
+
+      <text
+        x="710"
+        y="290"
+        font-size="10"
+        letter-spacing="1.5"
+        fill="#8B7A9B">
+        R4 · STATUS
+      </text>
+
+      <text
+        x="710"
+        y="311"
+        font-size="16"
+        font-weight="700"
+        fill="#A855F7">
+        ACTIVE
+      </text>
+    </g>
+
+  </g>
+
+</svg>
